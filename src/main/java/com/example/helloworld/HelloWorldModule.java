@@ -1,5 +1,8 @@
 package com.example.helloworld;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javax.inject.Named;
 
 import com.google.inject.AbstractModule;
@@ -9,7 +12,8 @@ public class HelloWorldModule extends AbstractModule {
 
   @Override
   protected void configure() {
-
+    bind(ExecutorService.class).toInstance(Executors.newSingleThreadExecutor());
+    bind(ExampleExecutorUser.class).asEagerSingleton();
   }
 
   @Provides
